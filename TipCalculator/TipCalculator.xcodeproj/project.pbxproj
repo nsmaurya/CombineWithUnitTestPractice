@@ -31,6 +31,9 @@
 		BA6F10EE2BBD887B00E03AEF /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6F10ED2BBD887B00E03AEF /* LabelFactory.swift */; };
 		BA6F10F02BBD920700E03AEF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6F10EF2BBD920700E03AEF /* UIView+Extension.swift */; };
 		BA6F10F22BBDB5EE00E03AEF /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6F10F12BBDB5EE00E03AEF /* HeaderView.swift */; };
+		BAD5DA362BC04B8600400EFB /* CalculatorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD5DA352BC04B8600400EFB /* CalculatorVM.swift */; };
+		BAD5DA392BC04CD900400EFB /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD5DA382BC04CD900400EFB /* Tip.swift */; };
+		BAD5DA3B2BC04D3400400EFB /* BillOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD5DA3A2BC04D3400400EFB /* BillOutput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,9 @@
 		BA6F10ED2BBD887B00E03AEF /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
 		BA6F10EF2BBD920700E03AEF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		BA6F10F12BBDB5EE00E03AEF /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		BAD5DA352BC04B8600400EFB /* CalculatorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorVM.swift; sourceTree = "<group>"; };
+		BAD5DA382BC04CD900400EFB /* Tip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
+		BAD5DA3A2BC04D3400400EFB /* BillOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillOutput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,8 @@
 		BA6F109A2BBB1BA400E03AEF /* TipCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				BAD5DA372BC04CCE00400EFB /* Model */,
+				BAD5DA342BC04B7000400EFB /* ViewModel */,
 				BA6F10EC2BBD886A00E03AEF /* Factory */,
 				BA6F10E92BBC6E8200E03AEF /* Extension */,
 				BA6F10E42BBC6E3900E03AEF /* Config */,
@@ -205,6 +213,23 @@
 				BA6F10ED2BBD887B00E03AEF /* LabelFactory.swift */,
 			);
 			path = Factory;
+			sourceTree = "<group>";
+		};
+		BAD5DA342BC04B7000400EFB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BAD5DA352BC04B8600400EFB /* CalculatorVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BAD5DA372BC04CCE00400EFB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BAD5DA382BC04CD900400EFB /* Tip.swift */,
+				BAD5DA3A2BC04D3400400EFB /* BillOutput.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,9 +379,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA6F10A02BBB1BA400E03AEF /* CalculatorVC.swift in Sources */,
+				BAD5DA392BC04CD900400EFB /* Tip.swift in Sources */,
 				BA6F10F02BBD920700E03AEF /* UIView+Extension.swift in Sources */,
 				BA6F10DB2BBC5D4200E03AEF /* LogoView.swift in Sources */,
 				BA6F10E62BBC6E4800E03AEF /* ThemeColor.swift in Sources */,
+				BAD5DA362BC04B8600400EFB /* CalculatorVM.swift in Sources */,
 				BA6F10EB2BBC6EA800E03AEF /* UIColor+Extension.swift in Sources */,
 				BA6F10E82BBC6E5300E03AEF /* ThemeFont.swift in Sources */,
 				BA6F10DF2BBC610E00E03AEF /* BillInputView.swift in Sources */,
@@ -365,6 +392,7 @@
 				BA6F109E2BBB1BA400E03AEF /* SceneDelegate.swift in Sources */,
 				BA6F10EE2BBD887B00E03AEF /* LabelFactory.swift in Sources */,
 				BA6F10E32BBC616A00E03AEF /* SplitInputView.swift in Sources */,
+				BAD5DA3B2BC04D3400400EFB /* BillOutput.swift in Sources */,
 				BA6F10E12BBC613300E03AEF /* TipInputView.swift in Sources */,
 				BA6F10F22BBDB5EE00E03AEF /* HeaderView.swift in Sources */,
 			);

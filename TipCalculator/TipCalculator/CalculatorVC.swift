@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import Combine
+
 class CalculatorVC: UIViewController {
     private let logoView = LogoView()
     private let resultView = ResultView()
@@ -20,11 +22,27 @@ class CalculatorVC: UIViewController {
         stackView.spacing = 36
         return stackView
     }()
+    
+    private let vm = CalculatorVM()
+    private var cancellables = Set<AnyCancellable>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ThemeColor.bg
         layout()
+        bind()
+    }
+    
+    private func bind() {
+        let input = CalculatorVM.Input(
+            billPublisher: Just(10).eraseToAnyPublisher(),
+            tipPublisher: Just(.tenPercent).eraseToAnyPublisher(),
+            splitPublisher: Just(200).eraseToAnyPublisher())
+        let output = vm.transform(input: input)
         
+        output.updateViewPublisher.sink { result in
+            print(result)
+        }.store(in: &cancellables)
     }
 
     private func layout() {
