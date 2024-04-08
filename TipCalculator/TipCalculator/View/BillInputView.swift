@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Combine
+import CombineCocoa
 
 class BillInputView: UIView {
     
@@ -45,9 +47,17 @@ class BillInputView: UIView {
         return textField
     }()
     
+    private let billSubject: PassthroughSubject<Double, Never> = .init()
+    var valuePublisher: AnyPublisher<Double,Never> {
+        return billSubject.eraseToAnyPublisher()
+    }
+    
+    private var cancellable = Set<AnyCancellable>()
+    
     init() {
         super.init(frame: .zero)
         layout()
+        observe()
     }
 
     required init?(coder: NSCoder) {
@@ -78,6 +88,17 @@ class BillInputView: UIView {
             make.leading.equalTo(currencyLabel.snp.trailing).offset(16)
             make.trailing.equalTo(textContainerView.snp.trailing).offset(-16)
         }
+    }
+    
+    private func observe() {
+        textField.textPublisher.sink {[unowned self] text in
+            self.billSubject.send(text?.doubleValue ?? 0)
+        }.store(in: &cancellable)
+    }
+    
+    func reset() {
+        textField.text = nil
+        billSubject.send(0)
     }
     
     @objc private func doneButtonTapped() {

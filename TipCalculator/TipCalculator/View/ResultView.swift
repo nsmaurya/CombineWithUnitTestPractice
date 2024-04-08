@@ -29,8 +29,18 @@ class ResultView: UIView {
         return view
     }()
     
+    private let totalBillView: AmountView = {
+        let view = AmountView(title: "Total bill", textAlignment: .left)
+        return view
+    }()
+    
+    private let totalTipView: AmountView = {
+        let view = AmountView(title: "Total tip", textAlignment: .right)
+        return view
+    }()
+    
     private lazy var hStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [AmountView(title: "Total bill", textAlignment: .left), UIView(), AmountView(title: "Total tip", textAlignment: .right)])
+        let view = UIStackView(arrangedSubviews: [totalBillView, UIView(), totalTipView])
         view.axis = .horizontal
         view.distribution = .fillEqually
         return view
@@ -73,6 +83,14 @@ class ResultView: UIView {
         let view = UIView()
         view.heightAnchor.constraint(equalToConstant: height).isActive = true
         return view
+    }
+    
+    func configure(result: BillOutput) {
+        let text = NSMutableAttributedString(string: result.amountPerPerson.curencyFormated, attributes: [.font: ThemeFont.bold(of: 48)])
+        text.addAttributes([.font: ThemeFont.bold(of: 24)], range: NSMakeRange(0, 1))
+        amountPerPersonLabel.attributedText = text
+        totalBillView.configure(amount: result.totalBill)
+        totalTipView.configure(amount: result.totalTip)
     }
 }
 
@@ -117,5 +135,11 @@ class AmountView: UIView {
         vStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    func configure(amount: Double) {
+        let text = NSMutableAttributedString(string: amount.curencyFormated, attributes: [.font: ThemeFont.bold(of: 24)])
+        text.addAttributes([.font: ThemeFont.bold(of: 16)], range: NSMakeRange(0, 1))
+        amountLabel.attributedText = text
     }
 }
