@@ -20,6 +20,7 @@ class ResultView: UIView {
         let text = NSMutableAttributedString(string: "$0", attributes:[.font: ThemeFont.bold(of: 48)])
         text.addAttributes([.font: ThemeFont.bold(of: 24)], range: NSMakeRange(0, 1))
         label.attributedText = text
+        label.accessibilityIdentifier = ScreenIdentifier.ResultView.totalAmountPerPersonValueLabel.rawValue
         return label
     }()
     
@@ -30,12 +31,16 @@ class ResultView: UIView {
     }()
     
     private let totalBillView: AmountView = {
-        let view = AmountView(title: "Total bill", textAlignment: .left)
+        let view = AmountView(title: "Total bill",
+                              textAlignment: .left,
+                              amountLabelIdentifier: ScreenIdentifier.ResultView.totalBillValueLabel.rawValue)
         return view
     }()
     
     private let totalTipView: AmountView = {
-        let view = AmountView(title: "Total tip", textAlignment: .right)
+        let view = AmountView(title: "Total tip",
+                              textAlignment: .right,
+                              amountLabelIdentifier: ScreenIdentifier.ResultView.totalTipValueLabel.rawValue)
         return view
     }()
     
@@ -98,6 +103,7 @@ class AmountView: UIView {
     
     private let title: String
     private let textAlignment: NSTextAlignment
+    private let amountLabelIdentifier: String
     
     private lazy var titleLabel: UILabel = {
         LabelFactory.build(text: self.title, font: ThemeFont.regular(of: 18), textColor: ThemeColor.text, alignment: self.textAlignment)
@@ -110,6 +116,7 @@ class AmountView: UIView {
         let text = NSMutableAttributedString(string: "$0", attributes:[.font: ThemeFont.bold(of: 24)])
         text.addAttributes([.font: ThemeFont.bold(of: 16)], range: NSMakeRange(0, 1))
         label.attributedText = text
+        label.accessibilityIdentifier = amountLabelIdentifier
         return label
     }()
 
@@ -119,9 +126,10 @@ class AmountView: UIView {
         return view
     }()
 
-    init(title: String, textAlignment: NSTextAlignment) {
+    init(title: String, textAlignment: NSTextAlignment, amountLabelIdentifier: String) {
         self.title = title
         self.textAlignment = textAlignment
+        self.amountLabelIdentifier = amountLabelIdentifier
         super.init(frame: .zero)
         layout()
     }
