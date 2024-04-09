@@ -41,11 +41,9 @@ class CalculatorVM {
             return Just(result)
         }.eraseToAnyPublisher()
     
-        let resetCalculatorPublisher = input.logoViewTapPublisher.handleEvents { [unowned self] _ in
+        let resetCalculatorPublisher = input.logoViewTapPublisher.handleEvents(receiveRequest:  { [unowned self] _ in
             audioPlayerService.playSound()
-        }.flatMap {
-            return Just($0)
-        }.eraseToAnyPublisher()
+        }).eraseToAnyPublisher()
         return Output(updateViewPublisher: updateViewPublisher,
                       resetCalculatorPublisher: resetCalculatorPublisher)
     }
@@ -61,7 +59,7 @@ class CalculatorVM {
         case .twentyPercent:
             return bill * 0.2
         case .custom(let value):
-            return bill * Double(value)
+            return Double(value)
         }
     }
 }
